@@ -29,3 +29,58 @@ we will see the following output in console:-
 [INFO] Finished at: 2021-08-10T17:24:39+06:00
 [INFO] ------------------------------------------------------------------------
 ```
+
+## automating running test with github action
+
+we can add our workflow files at `.github/workflows` directory. workflow file is basically a yml file which contains necessary steps and instructions to run our automation.
+
+[Here](https://github.com/kawnayeen/github-package-and-action/commit/cbd650cdd988364b2250e2b6eb5b6e9b19d74325) is the workflow file to running test.
+
+There is mainly two section of a workflow.
+- First we need to define which event will trigger the workflow
+- Then what we actually need to do 
+
+For, example on this workflow file, the following basically telling at each `push` 
+or `pull request` to `main` branch, we will run this workflow.
+
+```
+name: Running unit test
+on:
+   push:
+     branches:
+       - main
+   pull_request:
+     branches:
+       - main
+```
+
+When the event trigger, we can run one or many jobs. By default, different jobs will run concurrently. Job for running test is following:-
+```
+jobs:
+   unit_test:
+     runs-on: ubuntu-latest
+     defaults:
+       run:
+         working-directory: ./java-lib-with-maven
+     permissions:
+       contents: read
+     steps:
+       - uses: actions/checkout@v2
+       - uses: actions/setup-java@v2
+         with:
+           java-version: '11'
+           distribution: 'adopt'
+       - name: Run unit test with maven
+         run: mvn test
+```
+so, according to this configuration:-
+- this job will run on `ubuntu-latest`
+- it will run against the source code of `java-lib-with-maven` directory of the repository
+- steps are:-
+	- checkout the source code
+	- setup java 11
+	- run `mvn test`
+
+we use `uses` to run another action from public repository or current repository.
+for example, `uses: actions/checkout@v2` is running the source code checkout 
+action from [here](https://github.com/actions/checkout).
