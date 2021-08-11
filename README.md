@@ -84,3 +84,14 @@ so, according to this configuration:-
 we use `uses` to run another action from public repository or current repository.
 for example, `uses: actions/checkout@v2` is running the source code checkout 
 action from [here](https://github.com/actions/checkout).
+
+## publishing packag to github
+
+In order to publish package to github, we need to add the package repository in the 
+pom.xml file. The changes is [here](https://github.com/kawnayeen/github-package-and-action/commit/d7f69c79cc7f6b65c101d99f0d0ad6dcefb9ddda).
+
+now if we do `mvn deploy` from `java-lib-with-maven` directory, the package will be published to github. 
+
+Now, in order to publish package at github, we need to authenticate. For that, setps are following:-
+- Generate a personal access token (PAT). Follow [this](https://docs.github.com/en/github/authenticating-to-github/keeping-your-account-and-data-secure/creating-a-personal-access-token) documentation for this. make sure the token has package read and write permission.
+- We need to update our `settings.xml` file at `.m2` directory. Follow [this](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-apache-maven-registry#authenticating-with-a-personal-access-token) documentation to do that.
