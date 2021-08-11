@@ -95,3 +95,9 @@ now if we do `mvn deploy` from `java-lib-with-maven` directory, the package will
 Now, in order to publish package at github, we need to authenticate. For that, setps are following:-
 - Generate a personal access token (PAT). Follow [this](https://docs.github.com/en/github/authenticating-to-github/keeping-your-account-and-data-secure/creating-a-personal-access-token) documentation for this. make sure the token has package read and write permission.
 - We need to update our `settings.xml` file at `.m2` directory. Follow [this](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-apache-maven-registry#authenticating-with-a-personal-access-token) documentation to do that.
+
+## workflow for maven deploy
+
+Workflow file for maven deploy is [here](https://github.com/kawnayeen/github-package-and-action/blob/main/.github/workflows/mavendeploy.yml).
+
+This is similar to previous worklow file. We are providing `server-username` and `server-password` so that workflow can publish this package to our specified repository. We need to add those value by following `Settings --> Secrets --> New repository secret`.
