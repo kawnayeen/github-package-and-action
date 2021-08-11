@@ -100,4 +100,5 @@ Now, in order to publish package at github, we need to authenticate. For that, s
 
 Workflow file for maven deploy is [here](https://github.com/kawnayeen/github-package-and-action/blob/main/.github/workflows/mavendeploy.yml).
 
-This is similar to previous worklow file. We are providing `server-username` and `server-password` so that workflow can publish this package to our specified repository. We need to add those value by following `Settings --> Secrets --> New repository secret`.
+This is similar to previous worklow file. We are providing `server-username` and `server-password` as `MVN_USER` and `MVN_PASS` respectively. so that workflow can publish this package to our specified repository. We need to add those value by 
+following `Settings --> Secrets --> New repository secret`.
