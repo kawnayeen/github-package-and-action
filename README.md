@@ -1,6 +1,17 @@
 # Github Package and Action
 This repository will contain required source code and documentation regarding publishing java packages to github, automating the package publishing process and finally resolving published packages from there.
 
+This documentation contains the following section:-
+- [bootstrapping java library with maven](#bootstrapping-java-library-with-maven)
+- [automating test run with github action](#automating-test-running-with-github-action)
+- [publishing packag to github](#publishing-packag-to-github)
+- [workflow for maven deploy](#workflow-for-maven-deploy)
+- [resolving published packaged in maven project](#resolving-published-packaged-in-maven-project)
+- [resolving published package in gradle project](#resolving-published-package-in-gradle-project)
+- [resolving package in gradle build without settings.xml of .m2 directory](#resolving-package-in-gradle-build-without-settings.xml-of-.m2-directory)
+- [publishing library to gitub package with gradle](#publishing-library-to-gitub-package-with-gradle)
+- [workflow for gradle publish](#workflow-for-gradle-publish)
+
 ## bootstrapping java library with maven 
 Let's bootstrap a java library with maven. we will use jdk 11, and junit5 for running the test. the changes are [here](https://github.com/kawnayeen/github-package-and-action/commit/af80d74bf2b638685933d797bd583062340758b5).
 
@@ -30,7 +41,7 @@ we will see the following output in console:-
 [INFO] ------------------------------------------------------------------------
 ```
 
-## automating running test with github action
+## automating test running with github action
 
 we can add our workflow files at `.github/workflows` directory. workflow file is basically a yml file which contains necessary steps and instructions to run our automation.
 
@@ -139,7 +150,7 @@ We can find a complete example of `pom.xml` [here](https://github.com/kawnayeen/
 
 As we already updated our `settings.xml` previously for publishing package, our existing settings.xml will be able to authenticate to the repository for downloading package.
 
-## resolving published package from gradle project
+## resolving published package in gradle project
 
 ### adding plugin to read from settings.xml
 we need to use the following plugin to read configuration from settings.xml
