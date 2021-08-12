@@ -171,3 +171,16 @@ implementation 'com.kawnayeen:lib-maven:1.0-SNAPSHOT'
 ```
 
 we can find a complete example of `build.gradle` file [here](https://github.com/kawnayeen/github-package-and-action/blob/main/resolve-lib-with-gradle/lib/build.gradle).
+
+## resolving package in gradle build without settings.xml of .m2 directory
+If we don't have access to `settings.xml` of `.m2` directory or we don't want to use that, we can still resolve packages by updating the `repository` followingly:-
+```
+maven {
+    url "https://maven.pkg.github.com/kawnayeen/java-packages"
+    credentials {
+        username System.getenv('MVN_USER')
+        password System.getenv('MVN_PASS')
+    }
+}
+```
+In that we can need to pass the username and password as environment variable.
