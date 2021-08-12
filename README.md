@@ -184,3 +184,38 @@ maven {
 }
 ```
 In that we can need to pass the username and password as environment variable.
+
+## publishing library to gitub package with gradle
+In order to publish package to github with gradle build system, we need to do the following:-
+- adding `maven-publish` plugin. like following
+```
+plugins {
+    ...
+    id 'maven-publish'
+    ...
+}
+```
+- add publising block like following
+```
+publishing {
+    publications {
+        maven(MavenPublication) {
+            from components.java
+        }
+    }
+    repositories {
+        maven {
+            name = 'github'
+            url = 'https://maven.pkg.github.com/kawnayeen/java-packages'
+        }
+    }
+}
+```
+
+As we areadly using `net.linguica.maven-settings` plugin for reading `settings.xml` so only executing the following command will publish library
+
+```
+./gradlew publish
+```
+
+We can find the required changes in `build.gradle` file [here](https://github.com/kawnayeen/github-package-and-action/commit/99ac3122ffa23ad8ff30d447f0c3a22bed9f0291).
