@@ -1,0 +1,21 @@
+plugins {
+    id 'java-library'
+    id 'net.linguica.maven-settings' version '0.5'
+}
+
+repositories {
+    mavenCentral()
+    maven {
+        name "github"
+        url "https://maven.pkg.github.com/kawnayeen/java-packages"
+    }
+}
+
+dependencies {
+    implementation 'com.kawnayeen:lib-maven:1.0-SNAPSHOT'
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.7.1'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
