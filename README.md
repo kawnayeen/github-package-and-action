@@ -102,3 +102,39 @@ Workflow file for maven deploy is [here](https://github.com/kawnayeen/github-pac
 
 This is similar to previous worklow file. We are providing `server-username` and `server-password` as `MVN_USER` and `MVN_PASS` respectively. so that workflow can publish this package to our specified repository. We need to add those value by 
 following `Settings --> Secrets --> New repository secret`.
+
+## resolving published packaged in maven project
+Since we have published java package to github, now it's time to use that in other 
+project. Let's go to the package page [here](https://github.com/kawnayeen/java-packages/packages/935857) and copy the dependency code.
+
+now paste that in withing `dependencies` tag of `pom.xml`
+```
+<dependency>
+  <groupId>com.kawnayeen</groupId>
+  <artifactId>lib-maven</artifactId>
+  <version>1.0-SNAPSHOT</version>
+</dependency>
+```
+
+We also need to add the repository location, so that maven knows from where to 
+resolve it.
+
+```
+<repositories>
+  <repository>
+    <id>github</id>
+    <name>GitHub Apache Maven Packages</name>
+    <url>https://maven.pkg.github.com/kawnayeen/java-packages</url>
+    <releases>
+      <enabled>true</enabled>
+    </releases>
+    <snapshots>
+      <enabled>true</enabled>
+    </snapshots>
+  </repository>
+</repositories>
+```
+
+We can find a complete example of `pom.xml` [here](https://github.com/kawnayeen/github-package-and-action/blob/main/resolve-lib-with-maven/pom.xml).
+
+As we already updated our `settings.xml` previously for publishing package, our existing settings.xml will be able to authenticate to the repository for downloading package.
