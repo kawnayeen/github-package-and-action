@@ -138,3 +138,36 @@ resolve it.
 We can find a complete example of `pom.xml` [here](https://github.com/kawnayeen/github-package-and-action/blob/main/resolve-lib-with-maven/pom.xml).
 
 As we already updated our `settings.xml` previously for publishing package, our existing settings.xml will be able to authenticate to the repository for downloading package.
+
+## resolving published package from gradle project
+
+### adding plugin to read from settings.xml
+we need to use the following plugin to read configuration from settings.xml
+```
+id 'net.linguica.maven-settings' version '0.5'
+```
+in the plugins block
+```
+plugins {
+  ...
+  id 'net.linguica.maven-settings' version '0.5'
+}
+```
+
+### adding github maven respository
+
+in the `repositories` section, we need to add the following
+```
+maven {
+    name "github"
+    url "https://maven.pkg.github.com/kawnayeen/java-packages"
+}
+```
+
+### finally adding our package
+in the `dependencies` section
+```
+implementation 'com.kawnayeen:lib-maven:1.0-SNAPSHOT'
+```
+
+we can find a complete example of `build.gradle` file [here](https://github.com/kawnayeen/github-package-and-action/blob/main/resolve-lib-with-gradle/lib/build.gradle).
