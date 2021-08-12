@@ -219,3 +219,7 @@ As we areadly using `net.linguica.maven-settings` plugin for reading `settings.x
 ```
 
 We can find the required changes in `build.gradle` file [here](https://github.com/kawnayeen/github-package-and-action/commit/99ac3122ffa23ad8ff30d447f0c3a22bed9f0291).
+
+## workflow for gradle publish
+This is identical to the workflow for maven deploy. Only difference is we need to execute `./gradlew publish` at `run`. we can find the workflow file [here](https://github.com/kawnayeen/github-package-and-action/blob/main/.github/workflows/gradlepublish.yml).
+
